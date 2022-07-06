@@ -31,8 +31,14 @@ docker run --name jenkins \
 -d jenkins/jenkins:lts-jdk11
 
 # Nexus
-docker run --name nexus
+docker run --name nexus \
 --network=task1-net -p 9002:8081 \
--e INSTALL4J_ADD_VM_PARAMS="-Xms2703m -Xmx2703m -XX:MaxDirectMemorySize=2703m -Djava.util.prefs.userRoot=/some-other-dir" \
-$(pwd)/store/nexus/data:/nexus-data \
+-v $(pwd)/store/nexus/data:/nexus-data \
 -d sonatype/nexus3
+
+# portainer
+docker run --name portainer \
+--network=task1-net -p 9003:9000 -p 9443:9443 \
+-v /var/run/docker.sock:/var/run/docker.sock \
+-v $(pwd)/store/portainer/data:/data \
+-d portainer/portainer-ce:2.9.3
