@@ -23,3 +23,9 @@ docker run --name sonarqube \
 -v $(pwd)/store/sonarqube/logs:/opt/sonarqube/logs \
 -v $(pwd)/store/sonarqube/extensions:/opt/sonarqube/extensions \
 -d sonarqube:latest
+
+# Jenkins
+docker run --name jenkins \
+--network=task1-net -p 9001:8080 \
+-v $(pwd)/store/jenkins:/var/jenkins_home \
+-d jenkins/jenkins:lts-jdk11
