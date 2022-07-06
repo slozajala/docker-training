@@ -34,6 +34,7 @@ docker run --name jenkins \
 -d jenkins/jenkins:lts-jdk11
 
 # Nexus
+sudo chown -R 200 $(pwd)/store/nexus/data
 docker run --name nexus \
 --network=task1-net -p 9002:8081 \
 -v $(pwd)/store/nexus/data:/nexus-data \
