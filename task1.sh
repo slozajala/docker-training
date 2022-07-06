@@ -29,3 +29,10 @@ docker run --name jenkins \
 --network=task1-net -p 9001:8080 \
 -v $(pwd)/store/jenkins:/var/jenkins_home \
 -d jenkins/jenkins:lts-jdk11
+
+# Nexus
+docker run --name nexus
+--network=task1-net -p 9002:8081 \
+-e INSTALL4J_ADD_VM_PARAMS="-Xms2703m -Xmx2703m -XX:MaxDirectMemorySize=2703m -Djava.util.prefs.userRoot=/some-other-dir" \
+$(pwd)/store/nexus/data:/nexus-data \
+-d sonatype/nexus3
